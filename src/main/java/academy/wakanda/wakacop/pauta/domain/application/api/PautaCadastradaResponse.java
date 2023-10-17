@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class PautaResponse {
+public class PautaCadastradaResponse {
 
 	private UUID idPauta;
 

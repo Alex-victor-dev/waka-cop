@@ -15,5 +15,5 @@ public interface PautaAPI {
 
 	 	@PostMapping
 	    @ResponseStatus(code = HttpStatus.CREATED)
-	 	PautaResponse cadastraPauta(@Valid @RequestBody NovaPautaRequest novaPauta);
+	 	PautaCadastradaResponse cadastraPauta(@Valid @RequestBody NovaPautaRequest novaPauta);
 }

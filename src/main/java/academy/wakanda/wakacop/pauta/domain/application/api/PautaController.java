@@ -14,9 +14,9 @@ public class PautaController implements PautaAPI {
 	private final PautaService pautaService;
 
 	@Override
-	public PautaResponse cadastraPauta(NovaPautaRequest novaPauta) {
+	public PautaCadastradaResponse cadastraPauta(NovaPautaRequest novaPauta) {
 		log.info("[Start] PautaController - cadastraPauta");
-		PautaResponse pautaResponse = pautaService.cadastraPauta(novaPauta);
+		PautaCadastradaResponse pautaResponse = pautaService.cadastraPauta(novaPauta);
 		log.info("[finish] PautaController - cadastraPauta");
 		return pautaResponse;
 	}

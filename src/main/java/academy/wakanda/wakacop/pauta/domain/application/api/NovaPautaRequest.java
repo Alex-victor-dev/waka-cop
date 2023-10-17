@@ -1,5 +1,7 @@
 package academy.wakanda.wakacop.pauta.domain.application.api;
 
+import java.util.UUID;
+
 import javax.validation.constraints.NotNull;
 
 import lombok.AccessLevel;
@@ -14,5 +16,7 @@ public class NovaPautaRequest {
 	private String titulo;
 	@NotNull
 	private String descricao;
+	@NotNull
+	private UUID idAssociadoAutor;
 
 }

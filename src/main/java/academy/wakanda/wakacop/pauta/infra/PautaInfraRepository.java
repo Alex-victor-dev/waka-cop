@@ -2,8 +2,8 @@ package academy.wakanda.wakacop.pauta.infra;
 
 import org.springframework.stereotype.Repository;
 
+import academy.wakanda.wakacop.pauta.application.repository.PautaRepository;
 import academy.wakanda.wakacop.pauta.domain.Pauta;
-import academy.wakanda.wakacop.pauta.domain.application.repository.PautaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 

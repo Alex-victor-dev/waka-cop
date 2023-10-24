@@ -1,4 +1,4 @@
-package academy.wakanda.wakacop.pauta.domain.application.api;
+package academy.wakanda.wakacop.pauta.application.api;
 
 import javax.validation.Valid;
 

@@ -1,8 +1,8 @@
-package academy.wakanda.wakacop.pauta.domain.application.api;
+package academy.wakanda.wakacop.pauta.application.api;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import academy.wakanda.wakacop.pauta.domain.application.service.PautaService;
+import academy.wakanda.wakacop.pauta.application.service.PautaService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 

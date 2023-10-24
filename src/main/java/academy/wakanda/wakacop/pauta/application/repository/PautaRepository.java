@@ -1,4 +1,4 @@
-package academy.wakanda.wakacop.pauta.domain.application.repository;
+package academy.wakanda.wakacop.pauta.application.repository;
 
 import academy.wakanda.wakacop.pauta.domain.Pauta;
 

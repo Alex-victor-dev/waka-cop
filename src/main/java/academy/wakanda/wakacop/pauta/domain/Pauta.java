@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import academy.wakanda.wakacop.pauta.domain.application.api.NovaPautaRequest;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,4 +34,13 @@ public class Pauta {
 	@NotNull
 	private UUID idAssociadoAutor;
 	private LocalDateTime dataCriacao;
+
+	public Pauta(NovaPautaRequest novaPauta) {
+		this.titulo = novaPauta.getTitulo();
+		this.descricao = novaPauta.getDescricao();
+		this.idAssociadoAutor = novaPauta.getIdAssociadoAutor();
+		this.dataCriacao = LocalDateTime.now();
+
+	}
+
 }

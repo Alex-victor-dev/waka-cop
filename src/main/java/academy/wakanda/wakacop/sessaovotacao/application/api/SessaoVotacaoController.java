@@ -1,7 +1,5 @@
 package academy.wakanda.wakacop.sessaovotacao.application.api;
 
-import javax.validation.Valid;
-
 import org.springframework.web.bind.annotation.RestController;
 
 import academy.wakanda.wakacop.sessaovotacao.application.service.SessaoVotacaoService;
@@ -16,7 +14,7 @@ public class SessaoVotacaoController implements SessaoVotacaoAPI {
 	private final SessaoVotacaoService sessaoVotacaoService;
 
 	@Override
-	public SessaoAberturaResponse abreSessao(@Valid SessaoAberturaRequest sessaoAberturaRequest) {
+	public SessaoAberturaResponse abreSessao(SessaoAberturaRequest sessaoAberturaRequest) {
 		log.info("[inicia] SessaoVotacaoController - abreSessao");
 		SessaoAberturaResponse sessaoVotacaoResponse = sessaoVotacaoService.abreSessao(sessaoAberturaRequest);
 		log.info("[finaliza] SessaoVotacaoController - abreSessao");

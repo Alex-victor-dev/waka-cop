@@ -1,7 +1,5 @@
 package academy.wakanda.wakacop.sessaovotacao.application.service;
 
-import javax.validation.Valid;
-
 import org.springframework.stereotype.Service;
 
 import academy.wakanda.wakacop.sessaovotacao.application.api.SessaoAberturaRequest;
@@ -19,7 +17,7 @@ public class SessaoVotacaoApplicationService implements SessaoVotacaoService {
 	private final SessaoVotacaoRepository sessaoVotacaoRepository;
 
 	@Override
-	public SessaoAberturaResponse abreSessao(@Valid SessaoAberturaRequest sessaoAberturaRequest) {
+	public SessaoAberturaResponse abreSessao(SessaoAberturaRequest sessaoAberturaRequest) {
 		log.info("[inicia] SessaoVotacaoApplicationService - abreSessao");
 		SessaoVotacao sessaoSalva = sessaoVotacaoRepository.salvaSessao(new SessaoVotacao(sessaoAberturaRequest));
 		log.info("[finaliza] SessaoVotacaoApplicationService - abreSessao");

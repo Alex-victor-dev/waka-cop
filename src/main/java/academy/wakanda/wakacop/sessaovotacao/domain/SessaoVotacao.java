@@ -1,6 +1,7 @@
 package academy.wakanda.wakacop.sessaovotacao.domain;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -48,6 +49,7 @@ public class SessaoVotacao {
 		this.dataAbertura = LocalDateTime.now();
 		this.dataEncerramento = dataAbertura.plusMinutes(this.tempoDuracao);
 		this.status = StatusSessaoVotacao.ABERTA;
+		this.votos = new ArrayList<>();
 	}
 
 }

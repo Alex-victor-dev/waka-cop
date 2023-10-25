@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import academy.wakanda.wakacop.sessaovotacao.application.api.VotoRequest;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,4 +33,12 @@ public class VotoPauta {
 	@ManyToOne
 	@JoinColumn(name = "sessao_votacao_id")
 	private SessaoVotacao sessaoVotacao;
+
+	public VotoPauta(SessaoVotacao sessaoVotacao, VotoRequest votoRequest) {
+		this.cpfAssociado = votoRequest.getCpfAssociado();
+		this.opcaoVoto = votoRequest.getOpcaoVoto();
+		this.momentoVoto = LocalDateTime.now();
+		this.sessaoVotacao = sessaoVotacao;
+	}
+
 }

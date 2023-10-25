@@ -1,8 +1,8 @@
 package academy.wakanda.wakacop.sessaovotacao.domain;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
@@ -13,10 +13,15 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import academy.wakanda.wakacop.pauta.domain.Pauta;
 import academy.wakanda.wakacop.sessaovotacao.application.api.SessaoAberturaRequest;
+import academy.wakanda.wakacop.sessaovotacao.application.api.VotoRequest;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,10 +43,11 @@ public class SessaoVotacao {
 	private StatusSessaoVotacao status;
 	private LocalDateTime dataAbertura;
 	private LocalDateTime dataEncerramento;
-	@OneToMany(mappedBy = "sessaoVotacao",
-			cascade = CascadeType.ALL,
-			orphanRemoval = true)
-	private List<VotoPauta> votos;
+	
+	@OneToMany(mappedBy = "sessaoVotacao", cascade = CascadeType.ALL, orphanRemoval = true)
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@MapKey(name = "cpfAssociado")
+	private Map<String, VotoPauta> votos;
 
 	public SessaoVotacao(SessaoAberturaRequest sessaoAberturaRequest, Pauta pauta) {
 		this.idPauta = pauta.getIdPauta();
@@ -49,7 +55,20 @@ public class SessaoVotacao {
 		this.dataAbertura = LocalDateTime.now();
 		this.dataEncerramento = dataAbertura.plusMinutes(this.tempoDuracao);
 		this.status = StatusSessaoVotacao.ABERTA;
-		this.votos = new ArrayList<>();
+		this.votos = new HashMap<>();
 	}
 
+	public VotoPauta recebeVoto(VotoRequest votoRequest) {
+		validaAssociado(votoRequest.getCpfAssociado());
+		VotoPauta voto = new VotoPauta(this, votoRequest);
+		votos.put(votoRequest.getCpfAssociado(), voto);
+		return voto;
+
+	}
+
+	private void validaAssociado(String cpfAssociado) {
+		if (this.votos.containsKey(cpfAssociado)) {
+			new RuntimeException("Associado Já votou nessa Sessão!");
+		}
+	}
 }

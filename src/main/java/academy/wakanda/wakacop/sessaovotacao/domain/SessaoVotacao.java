@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import academy.wakanda.wakacop.pauta.domain.Pauta;
 import academy.wakanda.wakacop.sessaovotacao.application.api.SessaoAberturaRequest;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -34,8 +35,8 @@ public class SessaoVotacao {
 	private LocalDateTime dataAbertura;
 	private LocalDateTime dataEncerramento;
 
-	public SessaoVotacao(SessaoAberturaRequest sessaoAberturaRequest) {
-		this.idPauta = sessaoAberturaRequest.getIdPauta();
+	public SessaoVotacao(SessaoAberturaRequest sessaoAberturaRequest, Pauta pauta) {
+		this.idPauta = pauta.getIdPauta();
 		this.tempoDuracao = sessaoAberturaRequest.getTempoDuracao().orElse(1);
 		this.dataAbertura = LocalDateTime.now();
 		this.dataEncerramento = dataAbertura.plusMinutes(this.tempoDuracao);

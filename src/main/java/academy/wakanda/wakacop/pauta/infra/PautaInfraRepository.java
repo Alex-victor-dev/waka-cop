@@ -1,5 +1,7 @@
 package academy.wakanda.wakacop.pauta.infra;
 
+import java.util.UUID;
+
 import org.springframework.stereotype.Repository;
 
 import academy.wakanda.wakacop.pauta.application.repository.PautaRepository;
@@ -20,6 +22,15 @@ public class PautaInfraRepository implements PautaRepository {
 		pautaInfraJpaRepository.save(pauta);
 		log.info("[finish] PautaInfraRepository - salvaNovaPauta");
 		return pauta;
+	}
+
+	@Override
+	public Pauta buscaPautaPorId(UUID idPauta) {
+		log.info("[start] PautaInfraRepository - buscaPautaPorId");
+		Pauta pautaId = pautaInfraJpaRepository.findById(idPauta).orElseThrow(
+				() -> new RuntimeException());
+		log.info("[finish] PautaInfraRepository - buscaPautaPorId");
+		return pautaId;
 	}
 
 }

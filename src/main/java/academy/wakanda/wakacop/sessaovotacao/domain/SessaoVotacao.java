@@ -1,8 +1,10 @@
 package academy.wakanda.wakacop.sessaovotacao.domain;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -10,6 +12,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import academy.wakanda.wakacop.pauta.domain.Pauta;
 import academy.wakanda.wakacop.sessaovotacao.application.api.SessaoAberturaRequest;
@@ -34,6 +37,10 @@ public class SessaoVotacao {
 	private StatusSessaoVotacao status;
 	private LocalDateTime dataAbertura;
 	private LocalDateTime dataEncerramento;
+	@OneToMany(mappedBy = "sessaoVotacao",
+			cascade = CascadeType.ALL,
+			orphanRemoval = true)
+	private List<VotoPauta> votos;
 
 	public SessaoVotacao(SessaoAberturaRequest sessaoAberturaRequest, Pauta pauta) {
 		this.idPauta = pauta.getIdPauta();
